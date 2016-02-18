@@ -27,7 +27,7 @@
 - Unforeseen complexities of game API
 -	Limited in-person team communication 
 
-•	Mitigation strategy for dealing with the risk
+•	Mitigation strategy for dealing with the risks:
 -	Setting small goals so that even on busy weeks team members can make some progress
 -	Communicating so that we can get used to each other’s coding styles and keep each other accountable
 -	Also communication helps keep ideas in line with one another
@@ -68,7 +68,7 @@ ID	Description	Size	Topic/Area	User Type	Priority
 -	Trello
 -	https://trello.com/b/us382Bbx/methodstools
 
-•	Project plan
+•	Project plan:
 •	https://cloud.githubusercontent.com/assets/16886123/13131653/3def26ea-d5aa-11e5-91e3-f7f894c3bc4c.png
 
 
