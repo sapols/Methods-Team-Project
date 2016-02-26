@@ -8,21 +8,25 @@
 <body>
 
 <h1>Welcome to LoLith.</h1>
-<br />Summoner Name
+<br />Summoner Names
 <br />
-
-<input id="userName" />
-<input type="submit" onclick="summonerLookUp();" />
+<input id="userName" placeholder="Your Username" />
+<br />
+<input id="enemyName" placeholder="Enemy's Username" />
+<button class="btn" id="submitPlayers">Submit</button>
 
 
 <br />Summoner Level: <span id="sLevel"></span>
 <br />Summoner ID: <span id="sID"></span>
+<br />Enemy Level: <span id="eLevel"></span>
+<br />Enemy ID: <span id="eID"></span>
+
+
+
 <table class="table" id="gamelist">
 	<thead>
 		<tr>
 			<td>Match ID</td>
-			<td>Lane</td>
-			<td>Season</td>
 		</tr>
 	</thead>
 	
