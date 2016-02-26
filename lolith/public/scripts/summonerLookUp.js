@@ -1,4 +1,8 @@
-    var API_KEY = "3285b0e1-6cf7-49a8-bd06-26ff55dd8a78"
+/*
+ * Function uses a hard-coded API Key to pull summoner data for HTML display
+ */    
+
+    var API_KEY = "a043453c-dae3-4855-aebc-a4191544f448" //Shawn's Key
     function summonerLookUp() {
         var SUMMONER_NAME = "";
         SUMMONER_NAME = $("#userName").val();
