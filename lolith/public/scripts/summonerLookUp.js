@@ -1,16 +1,16 @@
     //Function uses a hard-coded API Key to pull summoner data for HTML display
-    var API_KEY = "a043453c-dae3-4855-aebc-a4191544f448" //Shawn's Key
-
+    //var API_KEY = "a043453c-dae3-4855-aebc-a4191544f448" //Shawn's Key
+    var API_KEY = "5529dcf1-5457-48d2-9c12-eab24c41a382" //Alicia's key
+    var enemyNoSpaces;
+    var playerNoSpaces;
 
     
     //On click function. When submit button is pressed, this executes
     $("#submitPlayers").click(function(){
-            var enemyName = "";
-    var playerName = "";
-    var enemyID;
-    var playerID;
-    var enemyNoSpaces;
-    var playerNoSpaces;
+        var enemyName = "";
+        var playerName = "";
+        var enemyID;
+        var playerID;
         //get the names from the user
         playerName = $("#userName").val();
         enemyName = $("#enemyName").val();
@@ -36,14 +36,14 @@
             $.getJSON("https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" + playerID + "?api_key=" + API_KEY, function(playerMatchList){
                 var playerMatches = playerMatchList;
                 //Once we get the matchlist from the player, do the same for "enemy" player, sending it player matchlist
-                enemyLookUp(enemyName, playerMatches);
+                enemyLookUp(enemyName, playerMatches, playerID);
             });
             
         });
     }
 
     //Call API to get "enemy" info. 
-    function enemyLookUp(eName, playerMatches){
+    function enemyLookUp(eName, playerMatches, playerID){
         //get enemy level and ID
         $.getJSON("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + eName + "?api_key=" + API_KEY, function(enemy){
             enemyID = enemy[eName].id;
@@ -66,44 +66,59 @@
                 }
 
                 //if the player's match ID is within eMatchList, add it to inCommon
-                
-                compareMatchLists(playerMatches, eMatchList, inCommon);
+                compareMatchLists(playerMatches, eMatchList, inCommon, playerID, enemyID);
                 
             });
         });
     }
 
     //Function to form an array of all of the matches both players were in
-    function compareMatchLists(playerMatches, eMatchList, inCommon){
+    function compareMatchLists(playerMatches, eMatchList, inCommon, playerID, enemyID){
         for(var i = 0; i< playerMatches.totalGames; i++){
             if(eMatchList.indexOf(playerMatches.matches[i].matchId) != -1){
                 inCommon.push(playerMatches.matches[i].matchId);
             }
         }
-        console.log("Incommon: " + inCommon.length);
-        console.log("Enemy: " + eMatchList.length);
-        console.log("Player: " + playerMatches.matches.length);
-        
-        addMatchesToTable(inCommon);
+        determineOpponents(inCommon, playerID, enemyID);
     }
-/*
-    function determineOpponents(inCommon){
+
+    function determineOpponents(inCommon, playerID, enemyID){
         var playerTeam;
-        var enemyNameTeam;
+        var enemyTeam;
         var whoWon;
-        $.getJSON("https://na.api.pvp.net/api/lol/na/v2.2/match/" + inCommon[0] + "?api_key=" + API_KEY, function(match){
-            for(var i = 0; i < match.participantIdentities.length; i++){
-                if(match.participantIdentities[i].player.summonerName == "hi")
-                    console.log(hi)
-            }
-        });
-    }*/
+        var matchWins = [];
+        for(var i = 0; i< inCommon.length; i++){
+            $.getJSON("https://na.api.pvp.net/api/lol/na/v2.2/match/" + inCommon[i] + "?api_key=" + API_KEY, function(match){
+                for(var i = 0; i < match.participantIdentities.length; i++){
+                    if(match.participantIdentities[i].player.summonerId == playerID){
+                        var partitipantID = match.participantIdentities[i].participantId;
+                        playerTeam = match.participants[partitipantID-1].teamId;
+                    }
+                    if(match.participantIdentities[i].player.summonerId == enemyID){
+                        var partitipantID = match.participantIdentities[i].participantId;
+                        enemyTeam = match.participants[partitipantID-1].teamId;
+                    }
+                }
+
+                if(playerTeam == enemyTeam){ /*do nothing*/ }
+                else{
+                    if(playerTeam == 100){
+                        matchWins.push(match.teams[0].winner)
+                    }
+                    else{
+                        matchWins.push(match.teams[1].winner)   
+                    }
+                }
+                addMatchesToTable(inCommon, matchWins);
+            });
+        }
+    }
 
     //Append HTML on page to include a table of in-common matches
-    function addMatchesToTable(inCommon){
+    function addMatchesToTable(inCommon, matchWins){
         $("#gamelist").append("<tbody>");
         for(var i = 0; i < inCommon.length; i++){
-            $("#gamelist").append("<tr><td>" + inCommon[i] + "</td></tr>");
+            $("#gamelist").append("<tr><td>" + inCommon[i] + "</td>" + "<td>" + matchWins[i] + "</td></tr>");
         }
         $("#gamelist").append("</tbody>");
     }
