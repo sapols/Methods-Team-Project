@@ -1,19 +1,22 @@
     //Function uses a hard-coded API Key to pull summoner data for HTML display
     var API_KEY = "a043453c-dae3-4855-aebc-a4191544f448" //Shawn's Key
 
-    var enemyName = "";
-    var playerName = "";
-    var enemyID;
-    var playerID;
+
     
     //On click function. When submit button is pressed, this executes
     $("#submitPlayers").click(function(){
+            var enemyName = "";
+    var playerName = "";
+    var enemyID;
+    var playerID;
+    var enemyNoSpaces;
+    var playerNoSpaces;
         //get the names from the user
         playerName = $("#userName").val();
         enemyName = $("#enemyName").val();
         //Change the names to be API friendly (get rid of spaces and uppercase letters)
-        var enemyNoSpaces = enemyName.replace(" ", "").toLowerCase().trim();
-        var playerNoSpaces = playerName.replace(" ", "").toLowerCase().trim();
+        enemyNoSpaces = enemyName.replace(/\s/g, "").toLowerCase().trim();
+        playerNoSpaces = playerName.replace(/\s/g, "").toLowerCase().trim();
 
         //Only call the API if the user entered BOTH names.
         if((playerName !== "") && (enemyName !== "")){
@@ -77,9 +80,24 @@
                 inCommon.push(playerMatches.matches[i].matchId);
             }
         }
-        console.log("Incommon: " + inCommon);
+        console.log("Incommon: " + inCommon.length);
+        console.log("Enemy: " + eMatchList.length);
+        console.log("Player: " + playerMatches.matches.length);
+        
         addMatchesToTable(inCommon);
     }
+/*
+    function determineOpponents(inCommon){
+        var playerTeam;
+        var enemyNameTeam;
+        var whoWon;
+        $.getJSON("https://na.api.pvp.net/api/lol/na/v2.2/match/" + inCommon[0] + "?api_key=" + API_KEY, function(match){
+            for(var i = 0; i < match.participantIdentities.length; i++){
+                if(match.participantIdentities[i].player.summonerName == "hi")
+                    console.log(hi)
+            }
+        });
+    }*/
 
     //Append HTML on page to include a table of in-common matches
     function addMatchesToTable(inCommon){
