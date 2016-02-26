@@ -1,6 +1,0 @@
-{
-  "name": "LoLith",
-  "repository": "https://github.com/sapols/LoLith.git",
-  "keywords": ["node", "express", "static"],
-  "image": "heroku/nodejs"
-}
