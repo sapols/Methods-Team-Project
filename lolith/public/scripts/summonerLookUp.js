@@ -1,10 +1,8 @@
 function summonerLookUp() {
-	
+	var API_KEY = "3285b0e1-6cf7-49a8-bd06-26ff55dd8a78"
     var SUMMONER_NAME = "";
-    SUMMONER_NAME = $("#userName").val();
 
-    var API_KEY = "";
-    API_KEY = $("#theKey").val();
+    SUMMONER_NAME = $("#userName").val();
 
     if (SUMMONER_NAME !== "") {
 
