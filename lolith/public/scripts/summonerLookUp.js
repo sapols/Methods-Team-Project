@@ -25,7 +25,7 @@
                     $("#sLevel").text(summonerLevel);
                     $("#sID").text(summonerID);
                     
-                    getTeamID(summonerID);
+                    getMatchList(summonerID);
 
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -35,37 +35,27 @@
         } else {}
     }
 
-    function getTeamID(id){
+    function getMatchList(id){
          $.ajax({
-                url: 'https://na.api.pvp.net/api/lol/na/v2.4/team/by-summoner/' + id + '?api_key=' + API_KEY,
+                url: 'https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/' + id + '?api_key=' + API_KEY,
                 type: 'GET',
                 dataType: 'json',
                 data: {
 
                 },
-                success: function (team) {
-                    var tID = team[id][0].fullId;
-                    getTeamName(tID);
+                success: function (matchlist) {
+                    var length = matchlist.matches.length;
+                    $("#gamelist").append("<tbody>");
+                    for(var i = 0; i<length; i++){
+                        var matchID = matchlist.matches[i].matchId;
+                        var lane = matchlist.matches[i].lane;
+                        var season = matchlist.matches[i].season;
+                        $("#gamelist").append("<tr><td>" + matchID + "</td>" + "<td>" + lane + "</td>" + "<td>" + season + "</td></tr>")
+                    }
+                    console.log(length);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("error getting Team data!");
+                    alert("error getting MatchList data!");
                 }
             });
     }          
-    function getTeamName(tID){
-        $.ajax({
-                url: 'https://na.api.pvp.net/api/lol/na/v2.4/team/' + tID + '?api_key=' + API_KEY,
-                type: 'GET',
-                dataType: 'json',
-                data: {
-
-                },
-                success: function (team) {
-                    var teamName = team[tID].name;
-                    $("#teamName").text(teamName);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("error getting Team data!");
-                }
-            });
-    }    
