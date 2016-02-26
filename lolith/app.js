@@ -25,12 +25,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public'))); //Old version
+app.use(express.static(path.join(__dirname, 'public'))); //Old version
 // At the top of your web.js
-process.env.PWD = process.cwd()
+//process.env.PWD = process.cwd()
 
 // Then
-app.use(express.static(process.env.PWD + '/htdocs'));
+//app.use(express.static(process.env.PWD + '/htdocs'));
 
 app.use('/', routes);
 app.use('/users', users);
