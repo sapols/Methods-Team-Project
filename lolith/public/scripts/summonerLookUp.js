@@ -3,7 +3,7 @@
     var API_KEY = "5529dcf1-5457-48d2-9c12-eab24c41a382" //Alicia's key
     var enemyNoSpaces;
     var playerNoSpaces;
-
+    var matchWins = []
     
     //On click function. When submit button is pressed, this executes
     $("#submitPlayers").click(function(){
@@ -79,6 +79,7 @@
                 inCommon.push(playerMatches.matches[i].matchId);
             }
         }
+        //REMOVEconsole.log("Setting incommon: " + inCommon)
         determineOpponents(inCommon, playerID, enemyID);
     }
 
@@ -86,35 +87,79 @@
         var playerTeam;
         var enemyTeam;
         var whoWon;
-        var matchWins = [];
-        for(var i = 0; i< inCommon.length; i++){
-            $.getJSON("https://na.api.pvp.net/api/lol/na/v2.2/match/" + inCommon[i] + "?api_key=" + API_KEY, function(match){
-                for(var i = 0; i < match.participantIdentities.length; i++){
-                    if(match.participantIdentities[i].player.summonerId == playerID){
-                        var partitipantID = match.participantIdentities[i].participantId;
-                        playerTeam = match.participants[partitipantID-1].teamId;
-                    }
-                    if(match.participantIdentities[i].player.summonerId == enemyID){
-                        var partitipantID = match.participantIdentities[i].participantId;
-                        enemyTeam = match.participants[partitipantID-1].teamId;
-                    }
-                }
 
-                if(playerTeam == enemyTeam){ /*do nothing*/ }
-                else{
-                    if(playerTeam == 100){
-                        matchWins.push(match.teams[0].winner)
+        for(var i = 0; i< inCommon.length; i++){
+            //dont kill the API!
+            if(inCommon.length < 11){
+                $.getJSON("https://na.api.pvp.net/api/lol/na/v2.2/match/" + inCommon[i] + "?api_key=" + API_KEY, function(match){
+                    console.log("Setting incommon: " + inCommon)
+                    for(var i = 0; i < match.participantIdentities.length; i++){
+                        if(match.participantIdentities[i].player.summonerId == playerID){
+                            var partitipantID = match.participantIdentities[i].participantId;
+                            playerTeam = match.participants[partitipantID-1].teamId;
+                        }
+                        if(match.participantIdentities[i].player.summonerId == enemyID){
+                            var partitipantID = match.participantIdentities[i].participantId;
+                            enemyTeam = match.participants[partitipantID-1].teamId;
+                        }
                     }
+
+                    if(playerTeam == enemyTeam){ /*do nothing*/ }
                     else{
-                        matchWins.push(match.teams[1].winner)   
+                        if(playerTeam == 100){
+                            win(match.teams[0].winner, inCommon.length);
+                        }
+                        else{
+                            win(match.teams[1].winner, inCommon.length);  
+                        }
                     }
+
+                    
+                });
+                if(i == (inCommon.length - 1)){
+              //      winPercentage();    
                 }
-                addMatchesToTable(inCommon, matchWins);
-            });
+            }
+            
         }
     }
 
+
+    function winPercentage(){
+        var win = 0.0;
+        var loss = 0.0;
+        console.log("Commong: " + matchWins)
+        for(var i = 0; i < matchWins.length; i++){
+            if(matchWins[i]){
+                win += 1.0;
+            }
+            else{
+                loss += 1.0;
+            }
+        }
+        console.log("win: " + win + " loss: " + loss)
+        var percent = (win / (win+loss)).toFixed(2) * 100
+        $("#winPercent").text(percent+"%");
+    }
+
+    function win(isWin, length){
+        console.log(isWin)
+        console.log("matchwins: " + matchWins)
+        if(String(isWin) == "true"){
+            matchWins.push(true);
+        }
+        else{
+            matchWins.push(false)
+        }
+
+        if(matchWins.length == length){
+            winPercentage();
+        }
+                //console.log("matchwins: " + matchWins)
+    }
+
     //Append HTML on page to include a table of in-common matches
+    //Currently not using, saving for later
     function addMatchesToTable(inCommon, matchWins){
         $("#gamelist").append("<tbody>");
         for(var i = 0; i < inCommon.length; i++){
