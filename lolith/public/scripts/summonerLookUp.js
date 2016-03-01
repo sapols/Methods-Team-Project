@@ -1,5 +1,5 @@
     //Function uses a hard-coded API Key to pull summoner data for HTML display
-    //var API_KEY = "a043453c-dae3-4855-aebc-a4191544f448" //Shawn's Key
+    var API_KEY2 = "a043453c-dae3-4855-aebc-a4191544f448" //Shawn's Key
     var API_KEY = "5529dcf1-5457-48d2-9c12-eab24c41a382" //Alicia's key
     var enemyNoSpaces;
     var playerNoSpaces;
@@ -67,11 +67,52 @@
 
                 //if the player's match ID is within eMatchList, add it to inCommon
                 compareMatchLists(playerMatches, eMatchList, inCommon, playerID, enemyID);
-                
+                // player matchlist is a list of game objects, inCommon is a list of common matchIDs btw player1 and player2
+                calculateWinPercentage(playerMatches, playerID, inCommon);
             });
         });
     }
-
+    
+function calculateWinPercentage(playerMatches, playerID, inCommon){
+    var wins = 0; 
+    var callsOnKey = 0;
+    var matchesSampled = 0;
+    // Iterates over each match in playerMatches, 
+    // then iterates over common match sub objects to find if won (not efficient)
+    for(var i = 0; i < playerMatches.totalGames; i++){
+	if (callsOnKey >= 10){
+		break;
+	}
+        //common match- determine whether player (and teammate) won or lost
+        if(inCommon.indexOf(playerMatches.matches[i].matchId) != -1){
+            callsOnKey = callsOnKey + 1;
+		 $.getJSON("https://na.api.pvp.net/api/lol/na/v2.2/match/" + playerMatches.matches[i].matchId + "?api_key=" + API_KEY2, function(datMatch){
+            //find player1's participant id for match
+            var participantList = datMatch.participantIdentities;
+            var playerParticipantID = -1;
+            for( j = 0; j < participantList.length; j++ )
+            {
+                if( participantList[j].player.summonerId == playerID ){
+                    playerParticipantID = participantList[j].participantId;
+		    break;
+                }
+            }
+            if (playerParticipantID == -1){
+                console.log("Unable to find playerid in participant list, call an adult");
+		return;
+            }
+            matchesSampled++;
+            //Now we go through participants stat's to find if player was winner
+            var participants = datMatch.participants;
+            if ( participants[playerParticipantID-1].stats.winner ){
+                wins = wins + 1;
+            }
+                $("#winPercent").text(wins/matchesSampled*100 + "%"); 
+	});
+        }
+    }
+   
+}
     //Function to form an array of all of the matches both players were in
     function compareMatchLists(playerMatches, eMatchList, inCommon, playerID, enemyID){
         for(var i = 0; i< playerMatches.totalGames; i++){
