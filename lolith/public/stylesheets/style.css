@@ -1,8 +1,32 @@
-body {
+
+.title h1{
+  font-size: 60px;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  color: #99e6ff;
+  padding-left: 100px;
+  padding-right: 100;
+}
+.title p{
+  font-size: 20px;
+  font-family: 'orbitron',sans-serif;
+  color: #99e6ff;
+  padding-left: 100px;
+}
+.main {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #ff3333;
+}
+.main{
+  background-image: url('http://eskipaper.com/images/league-of-legends-wallpaper-18.jpg');
 }
 
 a {
   color: #00B7FF;
+}
+.foot p{
+  color: #99e6ff;
+  padding-left: 30px;
 }

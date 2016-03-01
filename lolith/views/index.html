@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Lolith</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-</head>
-<body>
-<h1>Welcome to LoLith.</h1>
-<br />Summoner Names
-<br />
-<input id="userName" placeholder="Your Username" />
-<br />
-<input id="enemyName" placeholder="Summoner 2 Username" />
-<button class="btn" id="submitPlayers">Submit</button>
+  <head>
+	  <title>Lolith</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+	</head>
+	<style>
+	body{
+		background-color: black;
+	}
+	</style>
+  <body>
+
+<div class="page">
+	<div class="title">
+		<h1>Welcome to LoLith.</h1>
+		<p>The League of Legends Information Tracking Hub</p>
+	</div>
+	<div class="main">
+		<br />Summoner Names
+		<br />
+		<input id="userName" placeholder="Your Username" />
+		<br />
+		<input id="enemyName" placeholder="Summoner 2 Username" />
+		<button class="btn" id="submitPlayers">Submit</button>
 
 
-<br />Summoner Level: <span id="sLevel"></span>
-<br />Summoner ID: <span id="sID"></span>
-<br />Summoner 2  Level: <span id="eLevel"></span>
-<br />Summoner 2  ID: <span id="eID"></span>
-<br />
-<br />Win Percentage: <span id="winPercent"></span>
-<br />Number of games sampled: <span id="numGamesSampled"></span> 
-<br />
-<br />
-<br />
-<br />
-<br />
-<footer>
-<p>
-This is a class project for CSCI 3308: Software Development Methods and Tools at CU Boulder.
-</p>
-<p>
-LoLith isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy;Riot Games, Inc.
-</p>
-</footer>
-</body>
+		<br />Summoner Level: <span id="sLevel"></span>
+		<br />Summoner ID: <span id="sID"></span>
+		<br />Summoner 2  Level: <span id="eLevel"></span>
+		<br />Summoner 2  ID: <span id="eID"></span>
+		<br />
+		<br />Win Percentage: <span id="winPercent"></span>
+		<br />Number of games sampled: <span id="numGamesSampled"></span>
+</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	<div class="foot">
+		<footer>
+			<p>
+				This is a class project for CSCI 3308: Software Development Methods and Tools at CU Boulder.
+			</p>
+			<p>
+				LoLith isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy;Riot Games, Inc.
+			</p>
+		</footer>
+	</div>
+</div>
+  </body>
+
 
 <!--Shawn's First Attempt at Being Fancy-->
 <script src="/scripts/jquery-1.12.1.min.js"></script>
