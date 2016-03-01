@@ -13,11 +13,13 @@
   color: #99e6ff;
   padding-left: 100px;
 }
-.main {
-  padding: 50px;
+.main span{
+  padding: 2px;
+  padding-right: 0px;
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-weight: bold;
-  color: #ff3333;
+  color: #99e6ff;
+  background-color: black;
 }
 .main{
   background-image: url('http://eskipaper.com/images/league-of-legends-wallpaper-18.jpg');
