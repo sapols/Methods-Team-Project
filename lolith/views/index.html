@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <title>LoLith</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+	</head>
+	<style>
+	body{
+		background-color: black;
+	}
+	</style>
+  <body>
+
+<div class="page">
+	<div class="title">
+		<h1>Welcome to LoLith.</h1>
+		<p>The League of Legends Information Tracking Hub</p>
+	</div>
+	<div class="main">
+		<br /><span>Summoner Names</span>
+		<br />
+		<input id="userName" placeholder="Your Username" />
+		<br />
+		<input id="enemyName" placeholder="Summoner 2 Username" />
+		<button class="btn" id="submitPlayers">Submit</button>
+
+
+		<br /><span>Summoner Level: <span id="sLevel"></span></span>
+		<br /><span>Summoner ID: <span id="sID"></span></span>
+		<br /><span>Summoner 2  Level: <span id="eLevel"></span></span>
+		<br /><span>Summoner 2  ID: <span id="eID"></span></span>
+		<br />
+		<br /><span>Win Percentage: <span id="winPercent"></span></span>
+		<br /><span>Number of games sampled: <span id="numGamesSampled"></span></span>
+</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	<div class="foot">
+		<footer>
+			<p>
+				This is a class project for CSCI 3308: Software Development Methods and Tools at CU Boulder.
+			</p>
+			<p>
+				LoLith isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy;Riot Games, Inc.
+			</p>
+		</footer>
+	</div>
+</div>
+  </body>
+
+
+<!--Shawn's First Attempt at Being Fancy-->
+<script src="/scripts/jquery-1.12.1.min.js"></script>
+<script src="/scripts/summonerLookUp.js" type="text/javascript"></script>
+</html>
