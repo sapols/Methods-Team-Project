@@ -70,6 +70,10 @@ app.get('/login', function(req, res) {
   res.sendfile('views/login.html');
 });
 
+app.get('/signup', function(req, res) {
+  res.sendfile('views/signUp.html');
+});
+
 //Define the login handler routes
 app.post('/login',
   passport.authenticate('local', {
