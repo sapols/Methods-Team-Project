@@ -7,3 +7,19 @@ describe('Array', function() {
     });
   });
 });
+
+//----Real Tests Below-------------------------
+
+//IMPORT STATEMENT?
+
+//playerLookUp Level Test
+//var assert = require('assert');
+//var level = 36 //change this if incorrect
+
+//describe('int', function() {
+//  describe('#playerLookUp()', function () {
+//    it('should return tdub's summoner level when requested', function () {
+//      assert.equal(level, playerLookUp(tdub).level); //not correct
+//    });
+//  });
+//});
