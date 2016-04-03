@@ -25,7 +25,7 @@
     });
 
     //Call the API to get player info (first text box)
-    module.exports = function playerLookUp(name, enemyName){
+    function playerLookUp(name, enemyName){
         //Pulls layer ID and level from API
         $.getJSON("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + name + "?api_key=" + API_KEY, function(player){
             playerID = player[name].id;
@@ -43,7 +43,7 @@
     }
 
     //Call API to get "enemy" info. 
-    module.exports = function enemyLookUp(eName, playerMatches, playerID){
+    function enemyLookUp(eName, playerMatches, playerID){
         //get enemy level and ID
         $.getJSON("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + eName + "?api_key=" + API_KEY, function(enemy){
             enemyID = enemy[eName].id;
@@ -73,7 +73,7 @@
         });
     }
     
-module.exports = function calculateWinPercentage(playerMatches, playerID, inCommon){
+function calculateWinPercentage(playerMatches, playerID, inCommon){
     var wins = 0; 
     var matchesSampled = 0;
     // Iterates over each match in playerMatches, 
@@ -113,7 +113,7 @@ module.exports = function calculateWinPercentage(playerMatches, playerID, inComm
    
 }
     //Function to form an array of all of the matches both players were in
-    module.exports = function compareMatchLists(playerMatches, eMatchList, inCommon, playerID, enemyID){
+    function compareMatchLists(playerMatches, eMatchList, inCommon, playerID, enemyID){
         for(var i = 0; i< playerMatches.totalGames; i++){
             if(eMatchList.indexOf(playerMatches.matches[i].matchId) != -1){
                 inCommon.push(playerMatches.matches[i].matchId);
@@ -123,7 +123,7 @@ module.exports = function calculateWinPercentage(playerMatches, playerID, inComm
         determineOpponents(inCommon, playerID, enemyID);
     }
 
-    module.exports = function determineOpponents(inCommon, playerID, enemyID){
+    function determineOpponents(inCommon, playerID, enemyID){
         var playerTeam;
         var enemyTeam;
         var whoWon;
@@ -165,7 +165,7 @@ module.exports = function calculateWinPercentage(playerMatches, playerID, inComm
     }
 
 
-    module.exports = function winPercentage(){
+    function winPercentage(){
         var win = 0.0;
         var loss = 0.0;
         console.log("Commong: " + matchWins)
@@ -182,7 +182,7 @@ module.exports = function calculateWinPercentage(playerMatches, playerID, inComm
         $("#winPercent").text(percent+"%");
     }
 
-    module.exports = function win(isWin, length){
+    function win(isWin, length){
         console.log(isWin)
         console.log("matchwins: " + matchWins)
         if(String(isWin) == "true"){
@@ -200,7 +200,7 @@ module.exports = function calculateWinPercentage(playerMatches, playerID, inComm
 
     //Append HTML on page to include a table of in-common matches
     //Currently not using, saving for later
-    module.exports = function addMatchesToTable(inCommon, matchWins){
+    function addMatchesToTable(inCommon, matchWins){
         $("#gamelist").append("<tbody>");
         for(var i = 0; i < inCommon.length; i++){
             $("#gamelist").append("<tr><td>" + inCommon[i] + "</td>" + "<td>" + matchWins[i] + "</td></tr>");
