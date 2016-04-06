@@ -19,7 +19,7 @@
 		<br /><span>Summoner Names</span>
 		<br />
 
-		<div class="dropdown">
+		<!-- <div class="dropdown">
   			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Region
   			<span class="caret"></span></button>
   			<ul class="dropdown-menu">
@@ -35,16 +35,32 @@
     			<li><a href="#">RU</a></li>
     			<li><a href="#">TR</a></li>
   			</ul>
+		</div> -->
+		<br />
+		<div class="form-group region-selection">
+  			<!-- <label for="sel1">Select list:</label> -->
+  			<select class="form-control" id="sel1">
+		    <option>BR</option>
+		    <option>EUNE</option>
+		    <option>EUW</option>
+		    <option>JP</option>
+		    <option>KR</option>
+		    <option>LAN</option>
+		    <option>LAS</option>
+		    <option>NA</option>
+		    <option>OCE</option>
+		    <option>RU</option>
+		    <option>TR</option>
+		  </select>
 		</div>
 
-
-		<input id="regionName" placeholder="Region" />
-		<br />
+		<!-- <br /> -->
 		<input id="userName" placeholder="Your Username" />
 		<br />
 		<input id="enemyName" placeholder="Summoner 2 Username" />
+		<br />
 		<button class="btn" id="submitPlayers">Submit</button>
-
+		<br />
 
 		<br /><span>Summoner Level: <span id="sLevel"></span></span>
 		<br /><span>Summoner ID: <span id="sID"></span></span>
