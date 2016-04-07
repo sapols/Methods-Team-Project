@@ -15,7 +15,7 @@
  
 • Vision statement: "Relevant and reliable League of Legends stats."
 
-• Automated Tests:
+• **Automated Tests:**
   - Click the "build|passing" icon in README to open tests in Travis CI
   
 • UAT plans:
