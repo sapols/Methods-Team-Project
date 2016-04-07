@@ -18,6 +18,8 @@
 • **Automated Tests:**
   - Click the "build|passing" icon in README to open tests in Travis CI 
   - (https://travis-ci.org/sapols/LoLith)
+ ![Test_Screenshot](/Images/Test_Screenshot.png)
+ Format: ![Alt Text](url)
   
 
 • **UAT plans:**
