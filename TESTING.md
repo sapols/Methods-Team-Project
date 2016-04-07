@@ -19,5 +19,12 @@
   - Click the "build|passing" icon in README to open tests in Travis CI 
   - (https://travis-ci.org/sapols/LoLith)
   
-• UAT plans:
+
+• **UAT plans:**
+![UAT 1](/Images/UAT1.png)
+Format: ![Alt Text](url)
+![UAT 2](/Images/UAT2.png)
+Format: ![Alt Text](url)
+![UAT 3](/Images/UAT3.png)
+Format: ![Alt Text](url)
  
