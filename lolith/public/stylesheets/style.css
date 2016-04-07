@@ -11,6 +11,9 @@ body{
   width: 200px;
 }
 
+.bot-space{
+  margin-bottom: 5px;
+}
 
 .title h1{
   font-size: 60px;
