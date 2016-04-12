@@ -9,12 +9,17 @@ var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var lolapi = require('lolapi')('5529dcf1-5457-48d2-9c12-eab24c41a382', 'na');
 
 
 var app = express();
 
 // view engine setup
 var cons = require('consolidate');
+
+
+
+
 
 // Configure the local strategy for use by Passport.
 // The local strategy require a `verify` function which receives the credentials
@@ -66,6 +71,71 @@ passport.deserializeUser(function(id, cb) {
 app.use(passport.initialize());
 app.use(passport.session());
 // Define routes.
+
+
+//////TESTING todo:remove
+app.get("/string", function(req, res){
+  var strings = ["yay", "my", "strings"];
+//  console.log("in get" + summonerLevel);
+  res.send("hello");
+});
+
+
+var summonerName;
+var summonerLevel = [];
+var friendName;
+var friendLevel = [];
+var sendData = {
+    SI: "",
+    FI: "",
+    SL: "",
+    FL: "",
+    sMatchList: "",
+    fMatchList: ""
+}
+
+
+//Get user from client side and then return the response
+
+
+function getSummonersLevels(me, myFriend){
+  
+}
+
+  var Sync = require('sync');
+
+
+
+
+  app.post('/endpoint', function(req, res){
+    summonerName = req.body.user;
+    friendName = req.body.friend;
+
+    lolapi.Summoner.getByName(summonerName, function(err, summoner) {
+      if(err) throw err
+      sendData.SL = summoner[summonerName].summonerLevel;
+      sendData.SI = summoner[summonerName].id;
+      //var temp = [];
+
+    });
+
+    lolapi.Summoner.getByName(friendName, function(err, summoner){
+      if(err) throw err;
+      sendData.FL = summoner[friendName].summonerLevel;
+      sendData.FI = summoner[friendName].id;
+    
+      res.end(JSON.stringify(sendData));
+    });
+ 
+  });
+
+
+/////////
+
+
+
+
+
 app.get('/login', function(req, res) {
   res.sendfile('views/login.html');
 });

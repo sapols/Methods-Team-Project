@@ -18,27 +18,8 @@
 	<div class="main">
 		<br /><span>Summoner Names</span>
 		<br />
-
-		<!-- <div class="dropdown">
-  			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Region
-  			<span class="caret"></span></button>
-  			<ul class="dropdown-menu">
-    			<li><a href="#">BR</a></li>
-    			<li><a href="#">EUNE</a></li>
-    			<li><a href="#">EUW</a></li>
-    			<li><a href="#">JP</a></li>
-    			<li><a href="#">KR</a></li>
-    			<li><a href="#">LAN</a></li>
-    			<li><a href="#">LAS</a></li>
-    			<li><a href="#">NA</a></li>
-    			<li><a href="#">OCE</a></li>
-    			<li><a href="#">RU</a></li>
-    			<li><a href="#">TR</a></li>
-  			</ul>
-		</div> -->
 		<br />
 		<div class="form-group region-selection">
-  			<!-- <label for="sel1">Select list:</label> -->
   			<select class="form-control" id="sel1">
 		    <option>NA</option>
 		    <option>EUNE</option>
@@ -53,16 +34,17 @@
 		    <option>TR</option>
 		  </select>
 		</div>
-
-		<!-- <br /> -->
-		<input id="userName" class="bot-space form-control" placeholder="Your Username" />
-		<input id="enemyName" class="bot-space form-control" placeholder="Summoner 2 Username" />
-		<button class="btn" id="submitPlayers">Submit</button>
+		
+			<input type="text" id="userName" class="bot-space form-control" placeholder="Your Username" />
+			<input id="friendName" class="bot-space form-control" placeholder="Summoner 2 Username" />
+			<button class="btn" id="submitPlayers">Submit</button>
+			<button class="btn" id="something">My Button</button>
+		
 
 		<br /><span>Summoner Level: <span id="sLevel"></span></span>
 		<br /><span>Summoner ID: <span id="sID"></span></span>
-		<br /><span>Summoner 2  Level: <span id="eLevel"></span></span>
-		<br /><span>Summoner 2  ID: <span id="eID"></span></span>
+		<br /><span>Summoner 2  Level: <span id="fLevel"></span></span>
+		<br /><span>Summoner 2  ID: <span id="fID"></span></span>
 		<br />
 		<br /><span>Win Percentage: <span id="winPercent"></span></span>
 		<br /><span>Number of Games Sampled: <span id="numGamesSampled"></span></span>
