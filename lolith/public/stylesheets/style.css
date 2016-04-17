@@ -56,7 +56,7 @@ body{
   background: url("backimg.png") repeat-x;
   height: 200px;
   width: 5076px;
-  animation: slide 110s linear infinite;
+  animation: slide 130s linear infinite;
   opacity: .8;
 }
 @keyframes slide{
@@ -64,7 +64,7 @@ body{
     transform: translate3d(0, 0, 0);
   }
   100%{
-    transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3800px, 0, 0);
   }
 }
 .main{
