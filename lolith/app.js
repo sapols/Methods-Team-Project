@@ -31,8 +31,9 @@ passport.use(new Strategy(
     });
   }));
 // view engine setup
+
 app.engine('html', cons.swig)
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname , '/views'));
 app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
@@ -42,6 +43,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); //Old version
+
 // At the top of your web.js
 //process.env.PWD = process.cwd()
 
@@ -66,8 +68,8 @@ passport.deserializeUser(function(id, cb) {
 app.use(passport.initialize());
 app.use(passport.session());
 // Define routes.
-app.get('/login', function(req, res) {
-  res.sendfile('views/login.html');
+app.get('/login_signup', function(req, res) {
+  res.sendfile('views/login_signup.html');
 });
 
 app.get('/signup', function(req, res) {
@@ -75,7 +77,7 @@ app.get('/signup', function(req, res) {
 });
 
 //Define the login handler routes
-app.post('/login',
+app.post('/login_signup',
   passport.authenticate('local', {
     successRedirect: '/loginSuccess',
     failureRedirect: '/loginFailure'
@@ -131,4 +133,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-
