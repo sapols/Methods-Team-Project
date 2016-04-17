@@ -16,21 +16,25 @@ body{
 }
 
 .title h1{
-  font-size: 70px;
+  font-size: 80px;
   font-weight: bold;
   font-family: 'Orbitron', sans-serif;
-  color: black;
+  text-shadow: 2px 2px 2px black;
+  color: white;
   padding-left: 100px;
   padding-right: 100;
+
 }
 .title p{
-  font-size: 20px;
+  font-size: 30px;
   font-family: 'orbitron',sans-serif;
-  color: black;
+  color: white;
+  text-shadow: 2px 2px 2px black;
   font-weight: bold;
   padding-left: 100px;
   background-attachment: fixed;
 }
+
 .main span{
 
   padding: 2px;
