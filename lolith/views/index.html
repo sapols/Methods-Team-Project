@@ -7,26 +7,70 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 		<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	</head>
-	<style>
-	body{
-		background-color: black;
-	}
-	</style>
-  <body>
+
+<body>
+  <form action="/login_signup" method="get">
+    <li><a href="/login_signup">LogIn/SignUp</a></li>
+  </form>
+<style>
+body{
+  background-image: url('http://eskipaper.com/images/league-of-legends-wallpaper-18.jpg');
+}
+</style>
+
 
 <div class="page">
 	<div class="title">
-		<h1>Welcome to LoLith.</h1>
+		<h1>Welcome to LoLith</h1>
 		<p>The League of Legends Information Tracking Hub</p>
 	</div>
+  <div class="wrapper">
+    <div class="sliding-background">
+    </div>
+   </div>
 	<div class="main">
 		<br /><span>Summoner Names</span>
 		<br />
-		<input id="userName" placeholder="Your Username" />
-		<br />
-		<input id="enemyName" placeholder="Summoner 2 Username" />
-		<button class="btn" id="submitPlayers">Submit</button>
 
+		<!-- <div class="dropdown">
+  			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Region
+  			<span class="caret"></span></button>
+  			<ul class="dropdown-menu">
+    			<li><a href="#">BR</a></li>
+    			<li><a href="#">EUNE</a></li>
+    			<li><a href="#">EUW</a></li>
+    			<li><a href="#">JP</a></li>
+    			<li><a href="#">KR</a></li>
+    			<li><a href="#">LAN</a></li>
+    			<li><a href="#">LAS</a></li>
+    			<li><a href="#">NA</a></li>
+    			<li><a href="#">OCE</a></li>
+    			<li><a href="#">RU</a></li>
+    			<li><a href="#">TR</a></li>
+  			</ul>
+		</div> -->
+		<br />
+		<div class="form-group region-selection">
+  			<!-- <label for="sel1">Select list:</label> -->
+  			<select class="form-control" id="sel1">
+		    <option>NA</option>
+		    <option>EUNE</option>
+		    <option>EUW</option>
+		    <option>JP</option>
+		    <option>KR</option>
+		    <option>LAN</option>
+		    <option>LAS</option>
+		    <option>BR</option>
+		    <option>OCE</option>
+		    <option>RU</option>
+		    <option>TR</option>
+		  </select>
+		</div>
+
+		<!-- <br /> -->
+		<input id="userName" class="bot-space form-control" placeholder="Your Username" />
+		<input id="enemyName" class="bot-space form-control" placeholder="Summoner 2 Username" />
+		<button class="btn" id="submitPlayers">Submit</button>
 
 		<br /><span>Summoner Level: <span id="sLevel"></span></span>
 		<br /><span>Summoner ID: <span id="sID"></span></span>
@@ -55,7 +99,7 @@
   </body>
 
 
-<!--Shawn's First Attempt at Being Fancy-->
 <script src="/scripts/jquery-1.12.1.min.js"></script>
+<script src="/scripts/bootstrap.min.js"></script>
 <script src="/scripts/summonerLookUp.js" type="text/javascript"></script>
 </html>

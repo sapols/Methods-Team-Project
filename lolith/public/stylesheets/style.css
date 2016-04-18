@@ -1,29 +1,76 @@
+body{
+    background-color: black;
+  }
+
+
+.region-selection{
+  width: 200px;
+}
+
+#userName, #enemyName{
+  width: 200px;
+}
+
+.bot-space{
+  margin-bottom: 5px;
+}
 
 .title h1{
-  font-size: 60px;
+  font-size: 80px;
   font-weight: bold;
   font-family: 'Orbitron', sans-serif;
-  color: #99e6ff;
+  text-shadow: 2px 2px 2px black;
+  color: white;
   padding-left: 100px;
   padding-right: 100;
+
 }
 .title p{
-  font-size: 20px;
+  font-size: 30px;
   font-family: 'orbitron',sans-serif;
-  color: #99e6ff;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  font-weight: bold;
   padding-left: 100px;
+  background-attachment: fixed;
 }
+
 .main span{
+
   padding: 2px;
   padding-right: 0px;
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-weight: bold;
-  color: #99e6ff;
-  background-color: black;
+  color: black;
+  background-image: url('http://eskipaper.com/images/league-of-legends-wallpaper-18.jpg');
+
+}
+.wrapper{
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sliding-background{
+  z-index: -1;
+  background-size: cover;
+  background: url("backimg.png") repeat-x;
+  height: 200px;
+  width: 5076px;
+  animation: slide 130s linear infinite;
+  opacity: .8;
+}
+@keyframes slide{
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+  100%{
+    transform: translate3d(-3800px, 0, 0);
+  }
 }
 .main{
+  opacity: .6;
   padding-left: 40px;
-  background-image: url('http://eskipaper.com/images/league-of-legends-wallpaper-18.jpg');
+  background-color: black;
 }
 
 a {
@@ -32,4 +79,20 @@ a {
 .foot p{
   color: #99e6ff;
   padding-left: 30px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    padding: 8px;
+    background-color: #dddddd;
 }
