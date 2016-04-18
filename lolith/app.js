@@ -1,14 +1,17 @@
 var express = require('express');
 var path = require('path');
-//var favicon = require('serve-favicon');
+
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 3001;
 var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+var User = require('./models/User');
 
 
 var app = express();
@@ -16,20 +19,7 @@ var app = express();
 // view engine setup
 var cons = require('consolidate');
 
-// Configure the local strategy for use by Passport.
-// The local strategy require a `verify` function which receives the credentials
-// (`username` and `password`) submitted by the user.  The function must verify
-// that the password is correct and then invoke `cb` with a user object, which
-// will be set at `req.user` in route handlers after authentication.
-passport.use(new Strategy(
-  function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
-      return cb(null, user);
-    });
-  }));
+
 // view engine setup
 
 app.engine('html', cons.swig)
@@ -47,50 +37,51 @@ app.use(express.static(path.join(__dirname, 'public'))); //Old version
 // At the top of your web.js
 //process.env.PWD = process.cwd()
 
-// Configure Passport authenticated session persistence.
-//
-// In order to restore authentication state across HTTP requests, Passport needs
-// to serialize users into and deserialize users out of the session.  The
-// typical implementation of this is as simple as supplying the user ID when
-// serializing, and querying the user record by ID from the database when
-// deserializing.
-passport.serializeUser(function(user, cb) {
-  cb(null, user.id);
-});
 
-passport.deserializeUser(function(id, cb) {
-  db.users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
+
+// use static authenticate method of model in LocalStrategy
+passport.use(new LocalStrategy(User.authenticate()));
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Connect mongoose
+// mongoose.connect('mongodb://localhost/Lolith', function(err) {
+//   if (err) {
+//     console.log('Could not connect to mongodb on localhost. Ensure that you have mongodb running on localhost and mongodb accepts connections on standard ports!');
+//   }
+// });
 //Initialize Passport and restore authentication state
 app.use(passport.initialize());
 app.use(passport.session());
+
 // Define routes.
 app.get('/login_signup', function(req, res) {
   res.sendfile('views/login_signup.html');
 });
 
-app.get('/signup', function(req, res) {
-  res.sendfile('views/signUp.html');
-});
-
-//Define the login handler routes
-app.post('/login_signup',
+app.post('/login',
   passport.authenticate('local', {
     successRedirect: '/loginSuccess',
-    failureRedirect: '/loginFailure'
+    failureRedirect: '/login_signup'
   })
 );
 
-app.get('/loginFailure', function(req, res, next) {
-  res.send('Failed to authenticate');
+  app.post('/register', function(req, res, next) {
+  console.log('registering user');
+  user.register(new User({username: req.body.username}), req.body.password, function(err) {
+    if (err) {
+      console.log('error while user register!', err);
+      return next(err);
+    }
+
+    console.log('user registered!');
+
+    res.redirect('/');
+  });
 });
 
-app.get('/loginSuccess', function(req, res, next) {
-  res.send('Successfully authenticated');
-});
+
 
 // Then
 //app.use(express.static(process.env.PWD + '/htdocs'));
