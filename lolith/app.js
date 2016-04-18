@@ -57,7 +57,7 @@ app.use(passport.session());
 
 // Define routes.
 app.get('/login_signup', function(req, res) {
-  res.sendfile('views/login_signup.html');
+ res.render('login_signup', { title: 'Login' });
 });
 
 app.post('/login',
