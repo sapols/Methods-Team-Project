@@ -71,6 +71,8 @@ body{
 }
 .main{
   padding-left: 40px;
+  background-color: black;
+  opacity: .7;
 }
 
 a {
