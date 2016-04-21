@@ -3,20 +3,25 @@
     var API_KEY = "5529dcf1-5457-48d2-9c12-eab24c41a382" //Alicia's key
     var enemyNoSpaces;
     var playerNoSpaces;
+    //var player3NoSpaces;
     var matchWins = []
     
     //On click function. When submit button is pressed, this executes
     $("#submitPlayers").click(function(){
         var enemyName = "";
         var playerName = "";
+	//var player3  = "";
         var enemyID;
         var playerID;
+	var player3ID;
         //get the names from the user
         playerName = $("#userName").val();
         enemyName = $("#enemyName").val();
+	//player3Name = $("#userName3").val();
         //Change the names to be API friendly (get rid of spaces and uppercase letters)
         enemyNoSpaces = enemyName.replace(/\s/g, "").toLowerCase().trim();
         playerNoSpaces = playerName.replace(/\s/g, "").toLowerCase().trim();
+	//player3NoSpaces = playerName3.replace(/\s/g, "").toLowerCase().trim();
 
         //Only call the API if the user entered BOTH names.
         if((playerName !== "") && (enemyName !== "")){
