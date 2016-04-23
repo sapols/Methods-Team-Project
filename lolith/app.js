@@ -19,7 +19,10 @@ var app = express();
 
 // view engine setup
 var cons = require('consolidate');
-
+var uristring =
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/Lolith';
 
 // view engine setup
 
@@ -54,9 +57,11 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Connect mongoose
-mongoose.connect('mongodb://localhost/Lolith', function(err) {
+mongoose.connect(uristring, function (err, res) {
   if (err) {
-    console.log('Could not connect to mongodb on localhost. Ensure that you have mongodb running on localhost and mongodb accepts connections on standard ports!');
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
   }
 });
 
