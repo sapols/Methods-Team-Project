@@ -45,6 +45,7 @@ body{
   background-image: url('http://eskipaper.com/images/league-of-legends-wallpaper-18.jpg');
 
 }
+/*make sure sliding background does not show overflow*/
 .wrapper{
   overflow: hidden;
   margin-left: auto;
@@ -63,14 +64,15 @@ body{
   0%{
     transform: translate3d(0, 0, 0);
   }
+  /*Movement speed right*/
   100%{
     transform: translate3d(-3800px, 0, 0);
   }
 }
 .main{
-  opacity: .6;
   padding-left: 40px;
   background-color: black;
+  opacity: .7;
 }
 
 a {
