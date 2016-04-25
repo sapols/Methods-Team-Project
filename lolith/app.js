@@ -90,7 +90,7 @@ app.post('/login',
 
     console.log('user registered!');
 
-    res.redirect('..');
+    res.send('user registered!');
   });
 });
 
