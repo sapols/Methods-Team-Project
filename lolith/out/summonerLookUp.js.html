@@ -1,11 +1,39 @@
-    /**Function uses a hard-coded API Key to pull summoner data for HTML display**/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: summonerLookUp.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: summonerLookUp.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>    //Function uses a hard-coded API Key to pull summoner data for HTML display
     var API_KEY2 = "a043453c-dae3-4855-aebc-a4191544f448" //Shawn's Key
     var API_KEY = "5529dcf1-5457-48d2-9c12-eab24c41a382" //Alicia's key
     var enemyNoSpaces;
     var playerNoSpaces;
     var matchWins = []
     
-    /**On click function. When submit button is pressed, this executes**/
+    //On click function. When submit button is pressed, this executes
     $("#submitPlayers").click(function(){
         var enemyName = "";
         var playerName = "";
@@ -19,7 +47,7 @@
         playerNoSpaces = playerName.replace(/\s/g, "").toLowerCase().trim();
 
         //Only call the API if the user entered BOTH names.
-        if((playerName !== "") && (enemyName !== "")){
+        if((playerName !== "") &amp;&amp; (enemyName !== "")){
             playerLookUp(playerNoSpaces, enemyNoSpaces);
         }
     });
@@ -42,7 +70,7 @@
         });
     }
 
-    /**Call API to get "enemy" info.**/ 
+    //Call API to get "enemy" info. 
     function enemyLookUp(eName, playerMatches, playerID){
         //get enemy level and ID
         $.getJSON("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + eName + "?api_key=" + API_KEY, function(enemy){
@@ -61,7 +89,7 @@
                 var inCommon = [];
                 
                 //add all of the enemy's match ID's to eMatchList
-                for(var i = 0; i< length; i++){
+                for(var i = 0; i&lt; length; i++){
                     eMatchList.push(enemyMatches[i].matchId)
                 }
 
@@ -73,13 +101,12 @@
         });
     }
     
-    /**Calculates the win percentage by determining end result of each game**/
 function calculateWinPercentage(playerMatches, playerID, inCommon){
     var wins = 0; 
     var matchesSampled = 0;
     // Iterates over each match in playerMatches, 
     // then iterates over common match sub objects to find if won (not efficient)
-    for(var i = 0; i < playerMatches.totalGames; i++){
+    for(var i = 0; i &lt; playerMatches.totalGames; i++){
 	setTimeout( function(i){
 	 //common match- determine whether player (and teammate) won or lost
         if(inCommon.indexOf(playerMatches.matches[i].matchId) != -1){
@@ -87,7 +114,7 @@ function calculateWinPercentage(playerMatches, playerID, inCommon){
             //find player1's participant id for match
             var participantList = datMatch.participantIdentities;
             var playerParticipantID = -1;
-            for( j = 0; j < participantList.length; j++ )
+            for( j = 0; j &lt; participantList.length; j++ )
             {
                 if( participantList[j].player.summonerId == playerID ){
                     playerParticipantID = participantList[j].participantId;
@@ -113,9 +140,9 @@ function calculateWinPercentage(playerMatches, playerID, inCommon){
     }
    
 }
-    /**Function to form an array of all of the matches both players were in**/
+    //Function to form an array of all of the matches both players were in
     function compareMatchLists(playerMatches, eMatchList, inCommon, playerID, enemyID){
-        for(var i = 0; i< playerMatches.totalGames; i++){
+        for(var i = 0; i&lt; playerMatches.totalGames; i++){
             if(eMatchList.indexOf(playerMatches.matches[i].matchId) != -1){
                 inCommon.push(playerMatches.matches[i].matchId);
             }
@@ -124,18 +151,17 @@ function calculateWinPercentage(playerMatches, playerID, inCommon){
         determineOpponents(inCommon, playerID, enemyID);
     }
 
-    /**Determines if both players were on the same team**/
     function determineOpponents(inCommon, playerID, enemyID){
         var playerTeam;
         var enemyTeam;
         var whoWon;
 
-        for(var i = 0; i< inCommon.length; i++){
+        for(var i = 0; i&lt; inCommon.length; i++){
             //dont kill the API!
-            if(inCommon.length < 11){
+            if(inCommon.length &lt; 11){
                 $.getJSON("https://na.api.pvp.net/api/lol/na/v2.2/match/" + inCommon[i] + "?api_key=" + API_KEY, function(match){
                     console.log("Setting incommon: " + inCommon)
-                    for(var i = 0; i < match.participantIdentities.length; i++){
+                    for(var i = 0; i &lt; match.participantIdentities.length; i++){
                         if(match.participantIdentities[i].player.summonerId == playerID){
                             var partitipantID = match.participantIdentities[i].participantId;
                             playerTeam = match.participants[partitipantID-1].teamId;
@@ -166,12 +192,12 @@ function calculateWinPercentage(playerMatches, playerID, inCommon){
         }
     }
 
-    /**Final win percentage **/
+
     function winPercentage(){
         var win = 0.0;
         var loss = 0.0;
         console.log("Commong: " + matchWins)
-        for(var i = 0; i < matchWins.length; i++){
+        for(var i = 0; i &lt; matchWins.length; i++){
             if(matchWins[i]){
                 win += 1.0;
             }
@@ -200,12 +226,35 @@ function calculateWinPercentage(playerMatches, playerID, inCommon){
                 //console.log("matchwins: " + matchWins)
     }
 
-    /**Append HTML on page to include a table of in-common matches
-    //Currently not using, saving for later**/
+    //Append HTML on page to include a table of in-common matches
+    //Currently not using, saving for later
     function addMatchesToTable(inCommon, matchWins){
-        $("#gamelist").append("<tbody>");
-        for(var i = 0; i < inCommon.length; i++){
-            $("#gamelist").append("<tr><td>" + inCommon[i] + "</td>" + "<td>" + matchWins[i] + "</td></tr>");
+        $("#gamelist").append("&lt;tbody>");
+        for(var i = 0; i &lt; inCommon.length; i++){
+            $("#gamelist").append("&lt;tr>&lt;td>" + inCommon[i] + "&lt;/td>" + "&lt;td>" + matchWins[i] + "&lt;/td>&lt;/tr>");
         }
-        $("#gamelist").append("</tbody>");
+        $("#gamelist").append("&lt;/tbody>");
     }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#playerLookUp">playerLookUp</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Apr 24 2016 22:58:15 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
