@@ -19,6 +19,7 @@
     "express": "~4.13.1",
     "express-session": "^1.11.3",
     "jade": "~1.11.0",
+    "jsdoc": "^3.4.0",
     "jsdom": "7.0.2",
     "mocha": "^2.4.5",
     "mongoose": "^4.4.6",
