@@ -73,4 +73,20 @@ ID	Description	Size	Topic/Area	User Type	Priority
 •	Project plan:
 •	https://cloud.githubusercontent.com/assets/16886123/13131653/3def26ea-d5aa-11e5-91e3-f7f894c3bc4c.png
 
+####Repo organization:
+* **lolith** contains the following directories:
+	* **/models** contains all ORM models (called Schemas in mongoose)
+	* **/views** contains view-templates
+	* **/public** contains all static content
+		* **scripts** contains client side JavaScript
+		* **/stylesheets** contains image files and style sheets
+	* **/test** contains all unit testing scripts
+	* **/routes** contains all express routes 
+	* **/out** contains JSDoc's output
+	* **/bin** contains startup scripts
 
+
+
+#### Travis CI: <https://travis-ci.org/sapols/LoLith>
+#### How to run test cases: 
+see TESTING.md
