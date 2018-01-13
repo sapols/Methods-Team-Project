@@ -15,6 +15,8 @@
  - Information
  - Tracking
  - Hub
+ 
+ • **To view the website**: visit https://lolith.herokuapp.com
 
 •	Description: The central idea of our project is to create a website that will augment gameplay of the popular online battle game “League of Legends.” More specifically, our website will scrape data from the game’s API and display meaningful, novel player information including win/loss percentages of players users have played with.
 
